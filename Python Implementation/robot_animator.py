@@ -1,8 +1,10 @@
+from tkinter.tix import Tree
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
 from config import *
 from utils import cosd, sind, inverse_kinematics, forward_kinematics
+from player import Player
 
 
 class RobotAnimator:
@@ -148,6 +150,8 @@ class RobotAnimator:
 
     def animate(self):
         self.initialize_animation()
-        ani = animation.FuncAnimation(fig=self.fig, func=self.update_frame, interval=10, blit=True, frames=np.arange(
-            0, self.trajectory.shape[0], 1), repeat_delay=1000)
+        # ani = animation.FuncAnimation(fig=self.fig, func=self.update_frame, interval=10, blit=True, frames=np.arange(
+        #     0, self.trajectory.shape[0], 1), repeat_delay=1000)
+        new_artists = [self.collision_map_trajectory, self.cartesian_map_trajectory, self.link_1, self.link_2, self.collision_map_angle_text, self.cartesian_map_angle_text, self.collision_map_percentage_text, self.cartesian_map_percentage_text]
+        ani = Player(fig=self.fig, func=self.update_frame, new_artists=new_artists, interval=10, blit=False, maxi=self.trajectory.shape[0]-1, repeat_delay=1000)
         plt.show()

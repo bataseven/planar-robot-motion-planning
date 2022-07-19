@@ -12,7 +12,7 @@ def main():
 		collision_map, alpha_axis, beta_axis = calculate_collision_map()
 
 		potential_map = calculate_potential_map(collision_map, alpha_axis, beta_axis)
-		draw_potential_map(potential_map, alpha_axis, beta_axis)
+		# draw_potential_map(potential_map, alpha_axis, beta_axis)
 
 		start_theta_degree = np.rad2deg(inverse_kinematics(CONFIG["start_x"], CONFIG["start_y"], elbow_up=CONFIG['start_elbow_up'])) 
 		goal_theta_degree = np.rad2deg(inverse_kinematics(CONFIG["goal_x"], CONFIG["goal_y"], elbow_up=CONFIG['goal_elbow_up']))
